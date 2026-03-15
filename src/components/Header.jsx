@@ -58,14 +58,14 @@ function Header() {
         </form>
       </div>
 
-      <nav className="header-nav">
-        <div className="category-links">
+      <nav className="header-nav vertical-nav">
+        <div className="category-links side-category-links">
           {categories.map((category) => (
             <NavLink
               key={category}
               to={`/category/${category.toLowerCase()}`}
               className={({ isActive }) =>
-                isActive ? "nav-pill active" : "nav-pill"
+                isActive ? "nav-pill side-pill active" : "nav-pill side-pill"
               }
             >
               {category}
@@ -76,7 +76,9 @@ function Header() {
         <NavLink
           to="/favorites"
           className={({ isActive }) =>
-            isActive ? "favorites-link active" : "favorites-link"
+            isActive
+              ? "favorites-link side-favorites-link active"
+              : "favorites-link side-favorites-link"
           }
         >
           Favoritter
