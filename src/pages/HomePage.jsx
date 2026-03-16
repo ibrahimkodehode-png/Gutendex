@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { fetchBooks } from "../utils/api";
 import BookCard from "../components/BookCard";
 import Pagination from "../components/Pagination";
+import { fetchBooks } from "../utils/api";
 
 function HomePage() {
   const [searchParams] = useSearchParams();
@@ -44,7 +44,7 @@ function HomePage() {
     <section className="page-section">
       <div className="page-heading">
         <h2>{search ? `Søkeresultater for "${search}"` : "Populære bøker"}</h2>
-        <p>Finn klassiske bøker, forfattere og litteratur fra Gutendex.</p>
+        <p>Søk etter bøker eller utforsk klassisk litteratur fra Gutendex.</p>
       </div>
 
       {loading && <p className="status-message">Laster bøker...</p>}
@@ -54,19 +54,21 @@ function HomePage() {
         <p className="status-message">Ingen bøker funnet.</p>
       )}
 
-      <div className="book-grid">
-        {books.map((book) => (
-          <BookCard key={book.id} book={book} />
-        ))}
-      </div>
-
       {!loading && !error && books.length > 0 && (
-        <Pagination
-          page={page}
-          hasNext={hasNext}
-          hasPrevious={hasPrevious}
-          onPageChange={setPage}
-        />
+        <>
+          <div className="book-grid">
+            {books.map((book) => (
+              <BookCard key={book.id} book={book} />
+            ))}
+          </div>
+
+          <Pagination
+            page={page}
+            hasNext={hasNext}
+            hasPrevious={hasPrevious}
+            onPageChange={setPage}
+          />
+        </>
       )}
     </section>
   );

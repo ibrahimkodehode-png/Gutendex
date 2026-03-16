@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchBooks } from "../utils/api";
 import BookCard from "../components/BookCard";
 import Pagination from "../components/Pagination";
+import { fetchBooks } from "../utils/api";
 
-function formatTitle(topic) {
+function formatTopic(topic = "") {
   return topic.charAt(0).toUpperCase() + topic.slice(1);
 }
 
@@ -46,30 +46,32 @@ function CategoryPage() {
   return (
     <section className="page-section">
       <div className="page-heading">
-        <h2>{formatTitle(topic)}</h2>
-        <p>Bøker innen kategorien {formatTitle(topic)}.</p>
+        <h2>{formatTopic(topic)}</h2>
+        <p>Utforsk bøker i kategorien {formatTopic(topic).toLowerCase()}.</p>
       </div>
 
-      {loading && <p className="status-message">Laster kategori...</p>}
+      {loading && <p className="status-message">Laster bøker...</p>}
       {error && <p className="status-message error">{error}</p>}
 
       {!loading && !error && books.length === 0 && (
         <p className="status-message">Ingen bøker funnet i denne kategorien.</p>
       )}
 
-      <div className="book-grid">
-        {books.map((book) => (
-          <BookCard key={book.id} book={book} />
-        ))}
-      </div>
-
       {!loading && !error && books.length > 0 && (
-        <Pagination
-          page={page}
-          hasNext={hasNext}
-          hasPrevious={hasPrevious}
-          onPageChange={setPage}
-        />
+        <>
+          <div className="book-grid">
+            {books.map((book) => (
+              <BookCard key={book.id} book={book} />
+            ))}
+          </div>
+
+          <Pagination
+            page={page}
+            hasNext={hasNext}
+            hasPrevious={hasPrevious}
+            onPageChange={setPage}
+          />
+        </>
       )}
     </section>
   );
