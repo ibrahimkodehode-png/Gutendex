@@ -11,17 +11,15 @@ export async function fetchBooks({ search = "", topic = "", page = 1 } = {}) {
     params.set("topic", topic.trim());
   }
 
-  if (page) {
-    params.set("page", page);
-  }
+  params.set("page", String(page));
 
   const response = await fetch(`${BASE_URL}?${params.toString()}`);
 
   if (!response.ok) {
-    throw new Error("Kunne ikke hente bøker fra Gutendex.");
+    throw new Error("Kunne ikke hente bøker.");
   }
 
-  return response.json();
+  return await response.json();
 }
 
 export async function fetchBookById(id) {
@@ -31,27 +29,25 @@ export async function fetchBookById(id) {
     throw new Error("Kunne ikke hente bokdetaljer.");
   }
 
-  return response.json();
+  return await response.json();
 }
 
-export function getBookFormatLink(book) {
+export function getBookCover(book) {
+  return (
+    book?.formats?.["image/jpeg"] ||
+    "https://via.placeholder.com/400x600?text=No+Cover"
+  );
+}
+
+export function getReadableFormatLink(book) {
   const formats = book?.formats || {};
 
   return (
     formats["text/html"] ||
     formats["text/html; charset=utf-8"] ||
     formats["application/epub+zip"] ||
-    formats["application/x-mobipocket-ebook"] ||
     formats["text/plain; charset=utf-8"] ||
     formats["text/plain"] ||
     null
-  );
-}
-
-export function getBookCover(book) {
-  const formats = book?.formats || {};
-
-  return (
-    formats["image/jpeg"] || "https://via.placeholder.com/300x450?text=No+Cover"
   );
 }

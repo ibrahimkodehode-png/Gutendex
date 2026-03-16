@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchBookById, getBookCover, getBookFormatLink } from "../utils/api";
+import {
+  fetchBookById,
+  getBookCover,
+  getReadableFormatLink,
+} from "../utils/api";
 import { isFavorite, toggleFavorite } from "../utils/favorites";
 
 function BookDetailsPage() {
@@ -55,7 +59,7 @@ function BookDetailsPage() {
 
   const languages = book.languages?.join(", ") || "Ikke oppgitt";
 
-  const bookLink = getBookFormatLink(book);
+  const bookLink = getReadableFormatLink(book);
 
   return (
     <section className="details-page">
