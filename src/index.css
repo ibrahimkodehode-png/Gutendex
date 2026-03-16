@@ -25,8 +25,10 @@ html {
 body {
   margin: 0;
   font-family: Inter, Arial, sans-serif;
-  background: linear-gradient(180deg, #f6f9fc 0%, #eef4fb 100%);
-  color: var(--text);
+  background:
+    linear-gradient(rgba(248, 250, 252, 0.82), rgba(240, 245, 250, 0.86)),
+    url("/books.jpg") center / cover no-repeat fixed;
+  color: #142033;
 }
 
 a {
