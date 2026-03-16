@@ -119,37 +119,22 @@ button {
 .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
   min-width: 0;
-}
-
-.brand-mark {
-  width: 54px;
-  height: 54px;
-  display: grid;
-  place-items: center;
-  border-radius: 17px;
-  background: linear-gradient(135deg, #244ee9 0%, #4475ff 58%, #90acff 100%);
-  color: white;
-  font-size: 1.3rem;
-  font-weight: 800;
-  box-shadow:
-    0 10px 22px rgba(36, 87, 245, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
   flex-shrink: 0;
 }
 
-.brand h1 {
-  margin: 0;
-  font-size: 1.28rem;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+.brand-logo-only {
+  display: flex;
+  align-items: center;
 }
 
-.brand p {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 0.93rem;
+.brand-logo {
+  height: 110px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 10px 22px rgba(36, 87, 245, 0.16));
 }
 
 .search-bar {
@@ -751,14 +736,8 @@ button {
     padding: 14px 0;
   }
 
-  .brand-mark {
-    width: 46px;
-    height: 46px;
-    font-size: 1.15rem;
-  }
-
-  .brand h1 {
-    font-size: 1.1rem;
+  .brand-logo {
+    height: 78px;
   }
 
   .search-bar {

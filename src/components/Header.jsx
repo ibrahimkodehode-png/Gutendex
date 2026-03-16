@@ -1,11 +1,15 @@
 import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Header() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const currentSearch = searchParams.get("search") || "";
   const [searchValue, setSearchValue] = useState(currentSearch);
+
+  useEffect(() => {
+    setSearchValue(currentSearch);
+  }, [currentSearch]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -23,12 +27,8 @@ function Header() {
   return (
     <header className="site-header">
       <div className="header-top">
-        <NavLink to="/" className="brand">
-          <span className="brand-mark">G</span>
-          <div>
-            <h1>Gutendex Library</h1>
-            <p>Utforsk klassiske bøker</p>
-          </div>
+        <NavLink to="/" className="brand brand-logo-only">
+          <img src="/bookz.png" alt="Book-Z logo" className="brand-logo" />
         </NavLink>
 
         <form className="search-bar" onSubmit={handleSubmit}>
