@@ -1,22 +1,6 @@
 import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 
-const categories = [
-  "Fiction",
-  "Mystery",
-  "Thriller",
-  "Romance",
-  "Fantasy",
-  "Morality",
-  "Society",
-  "Power",
-  "Justice",
-  "Adventure",
-  "Tragedy",
-  "War",
-  "Philosophy",
-];
-
 function Header() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -57,33 +41,6 @@ function Header() {
           <button type="submit">Søk</button>
         </form>
       </div>
-
-      <nav className="header-nav vertical-nav">
-        <div className="category-links side-category-links">
-          {categories.map((category) => (
-            <NavLink
-              key={category}
-              to={`/category/${category.toLowerCase()}`}
-              className={({ isActive }) =>
-                isActive ? "nav-pill side-pill active" : "nav-pill side-pill"
-              }
-            >
-              {category}
-            </NavLink>
-          ))}
-        </div>
-
-        <NavLink
-          to="/favorites"
-          className={({ isActive }) =>
-            isActive
-              ? "favorites-link side-favorites-link active"
-              : "favorites-link side-favorites-link"
-          }
-        >
-          Favoritter
-        </NavLink>
-      </nav>
     </header>
   );
 }

@@ -40,6 +40,10 @@ input {
   font: inherit;
 }
 
+img {
+  max-width: 100%;
+}
+
 .app-shell {
   min-height: 100vh;
 }
@@ -55,7 +59,7 @@ input {
   top: 0;
   z-index: 100;
   backdrop-filter: blur(14px);
-  background: rgba(244, 247, 251, 0.86);
+  background: rgba(244, 247, 251, 0.9);
   border-bottom: 1px solid rgba(219, 228, 240, 0.8);
 }
 
@@ -459,9 +463,9 @@ input {
 }
 
 @media (max-width: 640px) {
-  .page-content,
   .header-top,
-  .header-nav {
+  .header-nav,
+  .app-layout {
     width: min(calc(100% - 24px), var(--max-width));
   }
 
